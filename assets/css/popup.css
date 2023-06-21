@@ -1,0 +1,107 @@
+.add-item-popup {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    color: white;
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  .popup-box {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .popup-box h2 {
+    color: white;
+    margin-bottom: 20px; /* Increase spacing */
+  }
+  
+  
+  .popup-box label {
+    display: inline-block;
+    color: white;
+    margin-bottom: 10px; /* Increase spacing */
+    width: 30%; /* Adjust width as needed */
+  }
+  
+  .popup-box input[type="text"],
+  .popup-box input[type="file"] {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    padding: 10px;
+    color: white;
+    margin-bottom: 15px; /* Increase spacing */
+    border-radius: 5px;
+    width: 65%; /* Adjust width as needed */
+    box-sizing: border-box;
+  }
+  
+  .popup-box .radio-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .popup-box .radio-container input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+  }
+  
+  .popup-box .radio-container input[type="radio"]::before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+  
+  .popup-box .radio-container input[type="radio"]:checked::before {
+    opacity: 1;
+  }
+  
+  .popup-box .radio-container label {
+    color: white;
+    margin: 0;
+  }
+
+  .popup-button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif; /* Use your preferred font */
+  }
+  
+  .popup-button:hover {
+    background-color: #45a049;
+  }
+  
+  
+  
+  

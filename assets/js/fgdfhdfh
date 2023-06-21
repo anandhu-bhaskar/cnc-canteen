@@ -1,0 +1,2541 @@
+i will give u my complete code for the application.
+
+u have to write a backend for me in node.js and mongo db
+
+
+admin-side.html
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CNC Canteen | Site</title>
+
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/popup.css" />
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <header class="navbar">
+      <div class="container flex text-center jc-ai-center">
+        <!-- Left Navigation -->
+        <div class="site-title flex align-item-center">
+          <div>
+            <a href="index.html"
+              ><h1>
+                <span class="clr-red">CNC</span>
+                <span class="clr-green">Canteen Admin</span>
+              </h1></a
+            >
+          </div>
+          <!-- Toggle Bars -->
+          <div class="toggle-bars mybar">
+            <div class="bars bar-1"></div>
+            <div class="bars bar-2"></div>
+            <div class="bars bar-3"></div>
+          </div>
+        </div>
+        <!-- Right Navigation -->
+        <nav class="site-nav flex left-nav align-item-center">
+          <ul class="flex">
+            <li><a href="order.html">Orders</a></li>
+            <li><a href="admin-side.html">Product Management</a></li>
+            <button class="btn" id="logout" style="padding: 10px 20px">
+              Log Out
+            </button>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar">
+      <nav class="nav container">
+        <ul class="mob-ul">
+          <li><a href="orders.html">Orders</a></li>
+          <li><a href="admin-side.html">Product Management</a></li>
+          <button class="btn" id="logout" style="padding: 10px 20px">
+            Log Out
+          </button>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Product Management -->
+    <section class="product-management">
+      <div class="container-min grid">
+        <div class="title md text-center">Product Management</div>
+        <hr />
+        <article class="choose-operation text-center">
+
+          <button class="btn p-1" id="add-product-menu">
+            Add a Product to Menu
+          </button>
+          <button class="btn p-1" id="remove-product-menu">
+            Remove a Product from Menu
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <section class="add-product add-container">
+      <div class="container-min grid">
+        <div class="title md text-center">Add Product in Menu</div>
+        <hr />
+        <!-- Add Menu Item -->
+        <article class="menu-item text-center">
+          <img src="assets/images/sandwich1.jpg" alt="Product image" />
+
+          <div class="item-info">
+            <figure>
+              <div class="flex align-item-center">
+                <input id="add-title" type="text" placeholder="Title of Food" />
+                <input
+                  id="add-calories"
+                  type="text"
+                  placeholder="For Eg. 220 - 280 Kcal"
+                />
+                <input
+                  id="add-price"
+                  type="text"
+                  placeholder="Price"
+                  id="product-price"
+                />
+              </div>
+            </figure>
+            <div class="item-category my-1">
+              <select name="Categories" id="add-category">
+                <option value="Burger">Burger</option>
+                <option value="Maggie">Maggie</option>
+                <option value="Fries">Fries</option>
+                <option value="Beverages">Beverages</option>
+                <option value="Pasta">Pasta</option>
+              </select>
+            </div>
+            <div class="my-1 text-center">
+              <button class="btn">Add to Menu</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="add-product remove remove-container">
+      <div class="container-min grid">
+        <div class="title md text-center">Remove a Product from Menu</div>
+        <hr />
+        <!-- Add Menu Item -->
+        <article class="menu-item text-center">
+          <img src="assets/images/sandwich1.jpg" alt="Product image" />
+
+          <div class="item-info">
+            <figure>
+              <h2><input type="text" placeholder="Title of Food" /></h2>
+            </figure>
+            <div class="my-1 text-center">
+              <button class="btn">Remove From Menu</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Controls User Stuff -->
+    <script src="assets/js/mycode.js"></script>
+    <script>
+      const addButton = document.getElementById('add-product-menu');
+      addButton.addEventListener('click', displayAddItemPopup);
+    </script>
+    <script src="assets/js/admin.js"></script>
+    <!-- Page Animations -->
+    <script src="assets/js/animations.js"></script>
+    <!-- Menu & Admin Stuff -->
+    <script src="assets/js/features.js"></script>
+    <!-- Controls User Stuff -->
+    <script src="assets/js/functioning.js"></script>
+  </body>
+</html>
+
+
+client-side.htmk
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNC Canteen | Menu</title>
+    
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" 
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" 
+          crossorigin="anonymous" />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <!-- Firebase Connectivity Using CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    
+    <!-- NavBar -->
+    <header class="navbar">
+        <div class="container flex text-center jc-ai-center">
+            <!-- Left Navigation -->
+            <div class="site-title flex align-item-center">
+                <div>
+                    <a href="client-side.html"><h1><span class="clr-red">CNC</span> <span class="clr-green">Canteen</span></h1></a>
+                </div>
+                <!-- Toggle Bars -->
+                <div class="toggle-bars mybar">
+                    <div class="bars bar-1"></div>
+                    <div class="bars bar-2"></div>
+                    <div class="bars bar-3"></div>
+                </div>
+            </div>
+            <!-- Right Navigation -->
+            <nav class="site-nav flex left-nav align-item-center">                
+                <ul class="flex">
+                    <li><a href="client-side.html"><i class="fas fa-cocktail"></i> Menu</a></li>
+                    <li><a href="user-orders.html"><i class="fas fa-coins"></i> Your Orders</a></li>
+                    <button  class="btn" id="userlogout">Log Out</button>
+                    <!-- Cart Icon -->
+                    <a class="flex" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p id="cart-values">0</p>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar">
+        <nav class="nav container">
+            <ul class="mob-ul">
+                <li><a href="client-side.html">Menu</a></li>
+                <li><a href="user-orders.html">My Orders</a></li>
+                <button  class="btn" id="userlogout">Log Out</button>
+                <!-- Cart Icon -->
+                <a class="flex" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p id="cart-values">6</p>
+                </a>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Cart -->
+    <section class="cart-overlay">
+        <div class="cart-innerlay">
+            <!-- Upper Side -->
+            <header class="cart-title text-center md">
+                <div>Your Cart</div>
+                <div>
+                    <i class="fas fa-times" 
+                       onclick="cartOverlay.classList.remove('show');
+                       cartInnerlay.classList.remove('showCart');">
+                    </i>
+                </div>
+            </header>
+            <!-- Cart Item Container -->
+            <div class="cart-items-container py-2">
+                <!-- Cart Items added to cart -->
+   
+            </div>
+            <hr class="py-1">
+            <!-- Footer Side  -->
+            <div class="cart-footer text-center sm">
+                <div>Your Total : &#8377;<span class="cart-total sm">0</span></div>
+                <div class="my-1">
+                    <button class="clear-cart">Clear Cart</button>
+                    <button class="check-out">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Showcase -->
+    <!-- Hero -->
+    <section class="menu-hero">
+        <div class="banner">
+            <h1 class="banner-title lg">Our Menu</h1>
+            <button class="banner-btn btn">order now</button>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="menu" style="margin-bottom: 5rem;">
+        <main class="container grid grid-1">
+            <!-- Title -->
+           <div class="title text-center">
+               <h2 class="lg my-2">Filter By Category</h2>
+                <!-- Filter Buttons -->
+                <div class="btn-container grid grid-4">
+                    <button id="menu-filter" class="filter-btn btn current" type="button" data-id="all">All</button>
+                    <button id="menu-filter" class="filter-btn btn" type="button" data-id="Burger">Burger</button>
+                    <button id="menu-filter" class="filter-btn btn" type="button" data-id="Sandwitch">Sandwich</button>
+                    <button id="menu-filter" class="filter-btn btn" type="button" data-id="Fries">Fries</button>
+                    <button id="menu-filter" class="filter-btn btn fv" type="button" data-id="Maggie">Maggie</button>
+                    <button id="menu-filter" class="filter-btn btn" type="button" data-id="Beverages">Beverages</button>
+                    <button id="menu-filter" class="filter-btn btn" type="button" data-id="Pasta">Pasta</button>
+                </div>
+           </div>
+           <hr>
+           <!-- Menu Items -->
+           <div class="menu-section grid grid-3">
+               <!-- Menu Item -->
+           </div>
+       </main>
+   </section>
+   
+    <!-- User Footer -->
+    <footer class="customer-footer" id="user-footer" style="margin-top: 10rem;"><!-- Comes Through JS --></footer>
+
+    <!-- Menu & Admin Stuff -->
+    <script src="assets/js/main.js"></script>
+    <!-- Creative Features -->
+    <script src="assets/js/features.js"></script>
+    <!-- Controls User Stuff -->
+    <script src="assets/js/functioning.js"></script>
+
+</body>
+</html>
+
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNC Canteen | Home</title>
+    
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" 
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" 
+          crossorigin="anonymous" />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <!-- Firebase Connectivity Using CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+    <!-- NavBar -->
+    <header class="navbar" id="preview-navbar"><!-- Comes From Js File --></header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar" id="mob-preview-navbar"><!-- Comes through JS --></header>
+
+    <!-- Modal SignUp -->
+    <section class="signup-modal"><!-- Comes From Js File --></section>
+
+    <!-- Modal LogIn -->
+    <section class="sign-modal"><!-- Comes From Js File --></section>
+
+    <section class="prakat-ho-animation">
+        <img src="assets/images/footer-illustration.jpg" loading="lazy" alt="Home Page Image">
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero my-2">
+        <main class="container-min grid grid-1 jc-ai-center">
+            <h1 class="clr-green lg text-center">Pocket Friendly Cafe</h1>
+            <article class="hero-article flex jc-ai-center">
+                <img src="assets/images/Mit & Canteen.svg" loading="lazy" alt="Home Canteen Image" >
+                <div class="my-2 p-2">
+                    <h3 class="clr-red md">Asian Cuisines & Beverages</h3>
+                    <p>Each and every day we strive to better serve our community, 
+                    customers with food that's fresh, tasty and healthy.
+                    Sumptuous delicious food baked in our cafe with curated 
+                    ingredients and recipes</p>
+                    <p>Savour the creamy goodness of Champion Fruit Cream. 
+                    We bet, there's the goodness of cream in every bite!</p>
+                    <div class="social-icons">
+                        <ul class="flex">
+                            <li><a href="https://www.youtube.com/channel/UC1v5h3FrfV2_r8qUxCbld3g" target="_blank"><i class="fab fa-youtube fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com//" target="_blank"><i class="fab fa-facebook fa-2x"></i></a></li>
+                            <li><a href="https://www.instagram.com//" target="_blank"><i class="fab fa-instagram fa-2x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </section>
+
+    <hr>
+
+    <!-- Come & Dine Section -->
+    <section class="showcase my-3">
+        <main class="container-min grid-1 text-center jc-ai-center">
+            <!-- Heading & Slogan -->
+            <article>
+                <h1 class="lg">__ Come and Dine __</h1>
+                <h6 class="md">with the finest</h6>
+            </article>
+            <!-- Show Case Content -->
+            <article class="grid grid-3">
+                <div class="m-2">
+                    <h4 class="md">Fresh Daily</h4>
+                    <img src="assets/images/waiter.svg" loading="lazy" alt="">
+                    <p>Savour the creamy goodness of Champion Fruit Cream. 
+                    We bet, there's the goodness of cream in every bite!</p>
+                </div>
+                <div class="m-2">
+                    <h4 class="md">Savoury & Creamy</h4>
+                    <img src="assets/images/bbq.svg" loading="lazy" alt="">
+                    <p>Sumptuous delicious food baked in our cafe with
+                       curated ingredients and recipes curated ingredients and recipes.</p>
+                </div>
+                <div class="m-2">
+                    <h4 class="md">Good Food</h4>
+                    <img src="assets/images/burger.svg" loading="lazy" alt="">
+                    <p>Each and every day we strive to better serve our 
+                       community, customers with food that's fresh, tasty and healthy.</p>
+                </div>
+            </article>
+        </main>
+    </section>
+
+    <!-- Most Loved Dishes -->
+    <section class="dishes my-4">
+        <main class="container-min">
+            <h1 class="text-center lg p-1">Our Most Loved Dishes</h1>
+            <div class="flex jc-ai-center" id="best-dishes-container">
+                <!-- Comes Through JS -->
+            </div>
+        </main>
+    </section>
+
+    <section class="prakat-ho-animation">
+        <img src="assets/images/footer-illustration.webp" loading="lazy" alt="Home Page Image">
+    </section>
+
+    <!-- Customers Footer -->
+    <footer class="customer-footer"><!-- Comes Through JS --></footer>
+    
+
+    <!-- Creative Features -->
+    <script src="assets/js/features.js"></script>
+    <!-- Controls User Stuff -->
+    <script src="assets/js/functioning.js"></script>
+    <!-- Page Animations -->
+    <script src="assets/js/animations.js"></script>
+</body>
+</html>
+
+order.html
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CNC Canteen | Sign In/Up</title>
+
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/utilities.css" />
+    <link rel="stylesheet" href="assets/css/mobile.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <header class="navbar">
+      <div class="container flex text-center jc-ai-center">
+        <!-- Left Navigation -->
+        <div class="site-title flex align-item-center">
+          <div>
+            <a href="index.html"
+              ><h1>
+                <span class="clr-red">CNC</span>
+                <span class="clr-green">Canteen Admin</span>
+              </h1></a
+            >
+          </div>
+          <!-- Toggle Bars -->
+          <div class="toggle-bars mybar">
+            <div class="bars bar-1"></div>
+            <div class="bars bar-2"></div>
+            <div class="bars bar-3"></div>
+          </div>
+        </div>
+        <!-- Right Navigation -->
+        <nav class="site-nav flex left-nav align-item-center">
+          <ul class="flex">
+            <li><a href="order.html">Orders</a></li>
+            <li><a href="admin-side.html">Product Management</a></li>
+            <button class="btn" id="logout" style="padding: 10px 20px">
+              Log Out
+            </button>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar">
+      <nav class="nav container">
+        <ul class="mob-ul">
+          <li><a href="order.html">Orders</a></li>
+          <li><a href="admin-side.html">Product Management</a></li>
+          <button class="btn" id="logout" style="padding: 10px 20px">
+            Log Out
+          </button>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="add-product remove">
+      <div class="container-min grid">
+        <div class="title md text-center">ravindra@gmail.com Orders</div>
+        <hr />
+        <!-- Add Menu Item -->
+        <article class="menu-item text-center grid grid-1" id="custom">
+          <table>
+            <tr>
+              <th>S.No.</th>
+              <th>Food Item</th>
+              <th>Amount</th>
+              <th>Total</th>
+            </tr>
+            <tr>
+              <td>1.</td>
+              <td>Double Cheese Potato Burger</td>
+              <td>2</td>
+              <td>90.00</td>
+            </tr>
+            <tr>
+              <td>2.</td>
+              <td>Veg Club Sandwitch</td>
+              <td>1</td>
+              <td>120.00</td>
+            </tr>
+          </table>
+          <div class="bold">Sub-Total: 210.00</div>
+        </article>
+      </div>
+    </section>
+
+    <script src="assets/js/admin.js"></script>
+  </body>
+</html>
+
+our-vision.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNC Canteen | Our Vision</title>
+    
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" 
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" 
+          crossorigin="anonymous" />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <!-- Firebase Connectivity Using CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- NavBar -->
+    <header class="navbar" id="preview-navbar"><!-- Comes From Js File --></header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar" id="mob-preview-navbar"><!-- Comes through JS --></header>
+
+    <!-- Modal SignUp -->
+    <section class="signup-modal"><!-- Comes through JS --></section>
+
+    <!-- Modal LogIn -->
+    <section class="sign-modal"><!-- Comes through JS --></section>
+
+    <!-- Main Image -->
+    <section class="main-img">
+        <div class="banner">
+            <h1 class="banner-title lg">Our Vision</h1>
+        </div>
+    </section>
+
+    <!-- Our History Section -->
+    <section class="our-history m-2">
+        <main class="container-min grid grid-1">
+            <!-- Heading -->
+            <div class="text-center">
+                <h1 class="lg">__ Our History __</h1>
+                <h3 class="md">FOUNDED IN 2011</h3>
+            </div>
+            <!-- Content -->
+            <div class="grid grid-2 md align-item-center">
+                <div class="m-3" id="history-content">
+                    <p class="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus eius, ad et animi eos labore quis beatae, consectetur officiis dolor eveniet odio commodi deserunt nemo, dicta delectus? Quod, at neque.</p>
+                </div>
+                <div class="p-3" id="history-img"><img src="assets/images/history-img.jpg" alt=""></div>
+            </div>
+        </main>
+    </section>
+
+    <hr>
+
+    <!-- Our Philosphy -->
+    <section class="our-philosphy my-3">
+        <main class="grid grid-1">
+            <!-- Heading -->
+            <div class="text-center">
+                <h1 class="lg">__ Our Philosphy __</h1>
+                <h3 class="md">YOU ARE WHAT YOU EAT</h3>
+            </div>
+            <!-- Content -->
+            <article class="grid grid-3 jc-ai-center">
+                <figure>
+                    <div><h4 class="md display-table">Asian Cusines</h4></div>
+                    <figcaption class="align-item-center">
+                        <img src="assets/images/op-dishsvg.svg" alt="">
+                        <p>Do not dwell in the past, do not dream of the future,
+                           concentrate the mind on the present moment.</p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <div><h4 class="md display-table">Great Food</h4></div>
+                    <figcaption class="align-item-center">
+                        <img src="assets/images/burger.svg" alt="">
+                        <p>Never be bullied into silence. Never allow yourself to 
+                           be made a victim. Accept no one's definition.</p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <div><h4 class="md display-table">Beverages</h4></div>
+                    <figcaption class="align-item-center">
+                        <img src="assets/images/op-drink.svg" alt="">
+                        <p>Do not dream of the future, concentrate the mind 
+                           on the present moment. Dream big. Go forward.</p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <div><h4 class="md display-table">Hot to Server</h4></div>
+                    <figcaption class="align-item-center">
+                        <img src="assets/images/op-hot.svg" alt="">
+                        <p>Everything should be as simple as it is, but not simpler; 
+                           Believe that life is worth living and your belief.</p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <div><h4 class="md display-table">Dessert</h4></div>
+                    <figcaption class="align-item-center">
+                        <img src="assets/images/op-dessert.svg" alt="">
+                        <p>Never be bullied into silence. Never allow yourself 
+                           to be made a victim. Accept no one's definition.</p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <div><h4 class="md display-table">Coffee</h4></div>
+                    <figcaption class="align-item-center">
+                        <img src="assets/images/op-coffee.svg" alt="">
+                        <p>Do not dream of the future, concentrate the mind on
+                           the present moment. Dream big. Go forward.</p>
+                    </figcaption>
+                </figure>
+            </article>
+        </main>
+    </section>
+
+    <hr>
+
+    <!-- What We Stand For Section -->
+    <section class="our-history m-3">
+        <main class="container-min grid grid-1">
+            <!-- Heading -->
+            <div class="text-center">
+                <h1 class="lg">What We Stand For?</h1>
+                <h3 class="md">OUR CORE VALUES</h3>
+            </div>
+            <!-- Content -->
+            <article class="grid grid-2 md align-item-center">
+                <div class="m-3" id="history-content">
+                    <div ><h4 class="display-table"><span class="clr-red sm">CNC </span><span class="clr-green sm"> Pocket Friendly Cafe</span></h4></div>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum dicta, sequi omnis, itaque laboriosam blanditiis adipisci iste nisi cum repudiandae modi, suscipit quo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas tenetur mollitia consequuntur expedita recusandae quod quam eius quaerat quae nulla rem suscipit a ipsum repudiandae totam, incidunt dolores sint. Modi.</p>
+                </div>
+                <div class="p-3" id="history-img" ><img src="assets/images/history-img.jpg" alt=""></div>
+            </article>
+        </main>
+    </section>
+
+    <!-- Customers Footer -->
+    <footer class="customer-footer"><!-- Comes Through JS --></footer>
+
+    <!-- Creative Features -->
+    <script src="assets/js/features.js"></script>
+    <!-- Controls User Stuff -->
+    <script src="assets/js/functioning.js"></script>
+    <!-- Page Animations -->
+    <script src="assets/js/animations.js"></script>
+    
+</body>
+</html>
+
+user-order.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CNC Canteen | Orders Status</title>
+    
+    <!-- Page Icon -->
+    <link rel="Micosoft icon" href="assets/images/MIT LOGO.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" 
+          integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" 
+          crossorigin="anonymous" />
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/utilities.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <!-- Firebase Connectivity Using CDN -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-database.js"></script>
+
+    <!-- Sweet Alert Pop Modal -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    
+    <!-- NavBar -->
+    <header class="navbar">
+        <div class="container flex text-center jc-ai-center">
+            <!-- Left Navigation -->
+            <div class="site-title flex align-item-center">
+                <div>
+                    <a href="client-side.html"><h1><span class="clr-red">CNC</span> <span class="clr-green">Canteen</span></h1></a>
+                </div>
+                <!-- Toggle Bars -->
+                <div class="toggle-bars mybar">
+                    <div class="bars bar-1"></div>
+                    <div class="bars bar-2"></div>
+                    <div class="bars bar-3"></div>
+                </div>
+            </div>
+            <!-- Right Navigation -->
+            <nav class="site-nav flex left-nav align-item-center">                
+                <ul class="flex">
+                    <li><a href="client-side.html"><i class="fas fa-cocktail"></i> Menu</a></li>
+                    <li><a href="user-orders.html"><i class="fas fa-coins"></i> Your Orders</a></li>
+                    <button  class="btn" id="userlogout">Log Out</button>
+                    <!-- Cart Icon -->
+                    <a class="flex" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p id="cart-values">0</p>
+                    </a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navbar -->
+    <header class="mob-navbar">
+        <nav class="nav container">
+            <ul class="mob-ul">
+                <li><a href="client-side.html">Menu</a></li>
+                <li><a href="user-orders.html">My Orders</a></li>
+                <button  class="btn" id="userlogout">Log Out</button>
+                <!-- Cart Icon -->
+                <a class="flex" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p id="cart-values">6</p>
+                </a>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Cart -->
+    <section class="cart-overlay">
+        <div class="cart-innerlay">
+            <!-- Upper Side -->
+            <header class="cart-title text-center md">
+                <div>Your Cart</div>
+                <div>
+                    <i class="fas fa-times" 
+                       onclick="cartOverlay.classList.remove('show');
+                       cartInnerlay.classList.remove('showCart');">
+                    </i>
+                </div>
+            </header>
+            <!-- Cart Item Container -->
+            <div class="cart-items-container py-2">
+                <!-- Cart Items added to cart -->
+            </div>
+            <hr class="py-1">
+            <!-- Footer Side  -->
+            <div class="cart-footer text-center sm">
+                <div>Your Total : &#8377;<span class="cart-total sm">0</span></div>
+                <div class="my-1">
+                    <button class="clear-cart">Clear Cart</button>
+                    <button class="check-out">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Orders -->
+    <section class="orders c-orders m-2">
+        <div class="order-inner container-min p-2">
+            <!-- heading -->
+            <main class="current-orders title" style="font-size: 1.7rem;">Current Orders</main>
+            <!-- Shows Current Orders -->
+            <div class="order-inner"></div>
+        </div>
+    </section>
+
+    <section class="orders p-orders">
+        <main class="previous-orders"></main>
+    </section>
+
+    <!-- User Footer -->
+    <footer class="customer-footer" id="user-footer" style="margin-top: 10rem;"><!-- Comes Through JS --></footer>
+
+    <!-- Page Animations -->
+    <script src="assets/js/animations.js"></script>
+    <!-- Menu & Admin Stuff -->
+    <script src="assets/js/main.js"></script>
+    <!-- Creative Features -->
+    <script src="assets/js/features.js"></script>
+    <!-- Controls User Stuff -->
+    <script src="assets/js/functioning.js"></script>
+
+</body>
+</html>
+
+assets/js/main.js
+
+var newMenu = [
+  {
+    sys: { id: "1" },
+    fields: {
+      title: "Double Cheese Potato Burger",
+      category: "Burger",
+      price: "45",
+      caleories: "220 - 280 Kcal",
+      image: { fields: { file: { url: "assets/images/burger.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "2" },
+    fields: {
+      title: "Cheese Sandwitch",
+      category: "Sandwitch",
+      price: "45",
+      caleories: "250 - 300 Kcal",
+      image: { fields: { file: { url: "assets/images/sandwich1.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "3" },
+    fields: {
+      title: "Veg Club Sandwitch",
+      category: "Sandwitch",
+      price: "60",
+      caleories: "320 - 400 Kcal",
+      image: { fields: { file: { url: "assets/images/s2.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "4" },
+    fields: {
+      title: "Cheese Masala Sandwitch",
+      category: "Sandwitch",
+      price: "45",
+      caleories: "250 - 300 Kcal",
+      image: { fields: { file: { url: "assets/images/sandwich2.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "5" },
+    fields: {
+      title: "Veg Schezuan Sandwitch",
+      category: "Sandwitch",
+      price: "45",
+      caleories: "230 - 285 Kcal",
+      image: { fields: { file: { url: "assets/images/schez-sandwitch.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "6" },
+    fields: {
+      title: "Masala Maggie",
+      category: "Maggie",
+      price: "25",
+      caleories: "150 - 280 Kcal",
+      image: { fields: { file: { url: "assets/images/maggie.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "7" },
+    fields: {
+      title: "Schezuan Maggie",
+      category: "Maggie",
+      price: "30",
+      caleories: "165 - 225 Kcal",
+      image: { fields: { file: { url: "assets/images/maggie-s.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "8" },
+    fields: {
+      title: "Veg Maggie",
+      category: "Maggie",
+      price: "30",
+      caleories: "170 - 220 Kcal",
+      image: { fields: { file: { url: "assets/images/veg-maggie.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "9" },
+    fields: {
+      title: "Cheese Garlic Maggie",
+      category: "Maggie",
+      price: "40",
+      caleories: "190 - 230 Kcal",
+      image: { fields: { file: { url: "assets/images/garlic-maggie.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "10" },
+    fields: {
+      title: "Cheese Veg Maggie",
+      category: "Maggie",
+      price: "45",
+      caleories: "175 - 235 Kcal",
+      image: { fields: { file: { url: "assets/images/cheese-maggie.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "11" },
+    fields: {
+      title: "Masala Fries",
+      category: "Fries",
+      price: "35",
+      caleories: "120 - 185 Kcal",
+      image: { fields: { file: { url: "assets/images/frenchfries.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "12" },
+    fields: {
+      title: "Schezuan Fries",
+      category: "Fries",
+      price: "45",
+      caleories: "135 - 210 Kcal",
+      image: { fields: { file: { url: "assets/images/shezuan.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "13" },
+    fields: {
+      title: "Cheese Fries",
+      category: "Fries",
+      price: "40",
+      caleories: "140 - 156 Kcal",
+      image: { fields: { file: { url: "assets/images/cheese-fries.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "14" },
+    fields: {
+      title: "Red Sause Pasta",
+      category: "Pasta",
+      price: "80",
+      caleories: "241 - 321 Kcal",
+      image: { fields: { file: { url: "assets/images/pasta.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "15" },
+    fields: {
+      title: "White Sause Pasta",
+      category: "Pasta",
+      price: "80",
+      caleories: "265 - 321 Kcal",
+      image: { fields: { file: { url: "assets/images/white-pasta.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "16" },
+    fields: {
+      title: "Milk Shakes",
+      category: "Beverages",
+      price: "35",
+      caleories: "155 - 210 Kcal",
+      image: { fields: { file: { url: "assets/images/milk-shake.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "17" },
+    fields: {
+      title: "Hot Chocolate",
+      category: "Beverages",
+      price: "35",
+      caleories: "230 - 280 Kcal",
+      image: { fields: { file: { url: "assets/images/hot-coffee.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "18" },
+    fields: {
+      title: "Aerated Drinks",
+      category: "Beverages",
+      price: "10",
+      caleories: "260 - 365 Kcal",
+      image: { fields: { file: { url: "assets/images/Aerated-Drinks.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "19" },
+    fields: {
+      title: "Cold Coffee",
+      category: "Beverages",
+      price: "35",
+      caleories: "255 - 360 Kcal",
+      image: { fields: { file: { url: "assets/images/cold-coffee.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "20" },
+    fields: {
+      title: "Coffee",
+      category: "Beverages",
+      price: "15",
+      caleories: "220 - 265 Kcal",
+      image: { fields: { file: { url: "assets/images/coffee.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "21" },
+    fields: {
+      title: "Tea",
+      category: "Beverages",
+      price: "10",
+      caleories: "155 - 225 Kcal",
+      image: { fields: { file: { url: "assets/images/tea.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "22" },
+    fields: {
+      title: "Chocate Frappe",
+      category: "Beverages",
+      price: "35",
+      caleories: "265 - 355 Kcal",
+      image: { fields: { file: { url: "assets/images/beverage.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "23" },
+    fields: {
+      title: "Veg Puff",
+      category: "Bakery",
+      price: "35",
+      caleories: "260 - 320 Kcal",
+      image: { fields: { file: { url: "assets/images/puff.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "24" },
+    fields: {
+      title: "Panner Puff",
+      category: "Bakery",
+      price: "45",
+      caleories: "280 - 340 Kcal",
+      image: { fields: { file: { url: "assets/images/puff-1.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "25" },
+    fields: {
+      title: "Veg Roll",
+      category: "Bakery",
+      price: "30",
+      caleories: "240 - 290 Kcal",
+      image: { fields: { file: { url: "assets/images/roll.jpg" } } },
+      type: "veg",
+    },
+  },
+  {
+    sys: { id: "26" },
+    fields: {
+      title: "Cheese Roll",
+      category: "Bakery",
+      price: "40",
+      caleories: "280 - 330 Kcal",
+      image: { fields: { file: { url: "assets/images/roll-1.jpg" } } },
+      type: "veg",
+    },
+  },
+];
+
+// Menu Section -
+const menuSection = document.querySelector(".menu-section");
+// Menu Filter Buttons -
+const menuFilterBtns = document.querySelectorAll("#menu-filter");
+
+function filtering(addToCartBtn) {
+  // Menu Items Filteration
+  menuFilterBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const Category = e.currentTarget.dataset.id;
+
+      // Current Btn Indication -
+      btn.classList.add("current");
+      menuFilterBtns.forEach((i) => {
+        if (i.dataset.id != Category) {
+          i.classList.remove("current");
+        }
+      });
+
+      // Filtering Menu Items -
+      addToCartBtn.forEach((item) => {
+        let id = item.dataset.id;
+        let menuItemClass =
+          item.parentElement.parentElement.parentElement.parentElement;
+        if (Category === newMenu[id - 1].fields.category) {
+          menuItemClass.classList.remove("display-none");
+          menuItemClass.classList.add("show");
+        }
+        if (Category != newMenu[id - 1].fields.category) {
+          menuItemClass.classList.add("display-none");
+        }
+        if (Category === "all") {
+          menuItemClass.classList.remove("display-none");
+          menuItemClass.classList.add("show");
+        }
+      });
+    });
+  });
+}
+
+// Function To Create Menu Cards & Add to HTML
+function displayMenuItems(menuItems) {
+  let displayMenu = menuItems.map(function (item) {
+    return `
+        <article class="menu-item">
+            <img src="${item.fields.image.fields.file.url}" loading="lazy" alt="Product image">
+            <div class="item-info">
+            <figure>
+                <h2>${item.fields.title}</h2>
+                <div class="item-category">${item.fields.category}</div>
+                <div class="flex" style="margin-top: 10px;">
+                    <i class="fas fa-fire"></i>
+                    <p>${item.fields.caleories}</p>
+                </div>
+            </figure>
+            <hr style="margin: 10px 0;">
+            <div class="menu-cart-functionality">
+                <div class="price">&#8377;${item.fields.price}</div>
+                <div class="cart-btn-container">
+                    <button class="bag-btn" id="add-to-cart-btn" data-id=${item.sys.id}>Add to Cart</i></button>
+                </div>
+            </div>
+            </div>
+        </article>
+        `;
+  });
+
+  displayMenu = displayMenu.join("");
+  if (menuSection) {
+    menuSection.innerHTML = displayMenu;
+  }
+}
+
+// ------------------ Menu.html Menu Cards END ------------------------
+
+// ---------------- Cart Functioning ----------------
+// Inside Cart Container
+const cartItemsContainer = document.querySelector(".cart-items-container");
+// Nav Cart Items Indicator
+const cartItems = document.querySelector(".cart-items");
+// Total Bill
+const cartTotal = document.querySelector(".cart-total");
+
+// Clear Cart Btn
+const clearCart = document.querySelector(".clear-cart");
+
+// Clear Cart Btn
+const checkOutBtn = document.querySelector(".check-out");
+
+// Nav Cart btn Values
+const cartValues = document.querySelectorAll("#cart-values");
+
+// Item Quantity -
+var quantity = 1;
+
+// Cart
+var addItem = [];
+
+// Add Id & quantity of Food Item -
+function foodItemCartBtn(data_id, quantity, trimedEmailID, addItem) {
+  // Add Food ID to object
+  var product = {
+    FoodID: data_id,
+    Quantity: quantity,
+  };
+  // add that to last position
+  addItem.push(product);
+
+  if (addItem.length != 0) {
+    // Save to Firebase DB
+    firebase
+      .database()
+      .ref("Users_Carts/" + trimedEmailID + "_Cart")
+      .set({
+        Details: addItem,
+        Total_Amount: 0,
+      });
+  }
+}
+
+// Add Items in User Cart -
+function showUserCart(addItem, trimedEmailID) {
+  let totalAmount = 0;
+  let No_of_Item = 0;
+
+  // Remove All Stored Previous items
+  cartItemsContainer.innerHTML = "";
+
+  addItem.forEach((item) => {
+    let id = item.FoodID - 1;
+    // Quantity of Current Item
+    let quantity = item.Quantity;
+    No_of_Item += quantity;
+    // Menu Fields
+    let inMenu = newMenu[id].fields;
+    // Total Amount Calc
+    totalAmount = totalAmount + quantity * inMenu.price;
+    // Creating Cart Item in Cart
+    var div = document.createElement("article");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+            <div><img src="${
+              inMenu.image.fields.file.url
+            }" alt="Food item image"></div>
+            <div class="cart-info">
+                <h3 id'c-title'>${inMenu.title}</h3>
+                <p>&#8377;${inMenu.price}</p>
+                <span class="remove-item" data-id=${id + 1}>remove</span>
+            </div>
+            <div class="flex-column"> 
+                <i class="fas fa-chevron-up" data-id=${id + 1}></i>
+                <p class="item-amount">${item.Quantity}</p>
+                <i class="fas fa-chevron-down" data-id=${id + 1}></i>
+            </div>
+        `;
+    cartItemsContainer.appendChild(div);
+  });
+
+  // Set Total Amount Value in Firebase DB & UI-
+  firebase
+    .database()
+    .ref("Users_Carts/" + trimedEmailID + "_Cart")
+    .update({ Details: addItem, Total_Amount: totalAmount });
+  // UI
+  cartTotal.innerHTML = totalAmount;
+  cartValues.forEach((values) => {
+    values.innerHTML = No_of_Item;
+  });
+
+  // If user orders than send cart to orders
+  userCart = { Details: addItem, Total_Amount: totalAmount };
+  return userCart;
+}
+
+// User Operations in Cart
+function cartFunctionalities(addItem, trimedEmailID, addToCartBtn) {
+  // In Cart Buttons & Functionalities -
+  cartItemsContainer.addEventListener("click", (event) => {
+    // When Remove Btn is clicked
+    if (event.target.classList.contains("remove-item")) {
+      let removeBtn = event.target;
+      let id = removeBtn.dataset.id;
+
+      // Remove Item From Array -
+      addItem.forEach((item) => {
+        if (item.FoodID === id) {
+          addItem.splice(addItem.indexOf(item), 1);
+          if (window.location != "http://127.0.0.1:5502/user-orders.html") {
+            // Enable removed items btn
+            addToCartBtn[item.FoodID - 1].disabled = false;
+            addToCartBtn[item.FoodID - 1].innerHTML = "Add to Cart";
+          }
+          if (addItem.length === 0) {
+            cartItemsContainer.innerHTML = "";
+            cartValues.forEach((values) => {
+              values.innerHTML = "0";
+            });
+            cartTotal.innerHTML = "0";
+
+            // Remove in Firebase DB
+            firebase
+              .database()
+              .ref("Users_Carts/" + trimedEmailID + "_Cart")
+              .remove();
+          }
+        }
+      });
+
+      // If last element in cart if removed -
+      if (addItem.length === 0) {
+        cartItemsContainer.innerHTML = "";
+        cartValues.forEach((values) => {
+          values.innerHTML = "0";
+        });
+      }
+
+      // Remove (i.e update) In Firebase DB
+      firebase
+        .database()
+        .ref("Users_Carts/" + trimedEmailID + "_Cart")
+        .update({ Details: addItem });
+    }
+    // When Add Quantity is clicked
+    else if (event.target.classList.contains("fa-chevron-up")) {
+      let addAmount = event.target;
+      let id = addAmount.dataset.id;
+
+      // Update Array -
+      addItem.forEach((item) => {
+        if (item.FoodID === id) {
+          item.Quantity += 1;
+        }
+      });
+      // Update in Firebase DB
+      firebase
+        .database()
+        .ref("Users_Carts/" + trimedEmailID + "_Cart")
+        .update({ Details: addItem });
+    }
+    // When lower Quantity is clicked
+    else if (event.target.classList.contains("fa-chevron-down")) {
+      let lowerAmount = event.target;
+      let id = lowerAmount.dataset.id;
+
+      // Update Array -
+      addItem.forEach((item) => {
+        if (item.FoodID === id && item.Quantity >= 1) {
+          item.Quantity -= 1;
+          if (item.Quantity === 0) {
+            if (
+              window.location !=
+              "https://mit-canteen.netlify.app/user-orders.html"
+            ) {
+              // Enable Buttons - so user can use them again
+              // Enable removed items btn
+              addToCartBtn[item.FoodID - 1].disabled = false;
+              addToCartBtn[item.FoodID - 1].innerHTML = "Add to Cart";
+            }
+            // Update Array -
+            addItem.splice(addItem.indexOf(item), 1);
+            if (addItem.length === 0) {
+              cartItemsContainer.innerHTML = "";
+              cartValues.forEach((values) => {
+                values.innerHTML = "0";
+              });
+              cartTotal.innerHTML = "0";
+              // Remove in Firebase DB
+              firebase
+                .database()
+                .ref("Users_Carts/" + trimedEmailID + "_Cart")
+                .remove();
+            }
+          }
+        }
+      });
+
+      // Update in Firebase DB
+      firebase
+        .database()
+        .ref("Users_Carts/" + trimedEmailID + "_Cart")
+        .update({ Details: addItem });
+    }
+  });
+}
+
+// Remove all items in cart
+function clearUserCart(addItem, addToCartBtn, trimedEmailID) {
+  cartItemsContainer.innerHTML = "";
+  cartValues.forEach((values) => {
+    values.innerHTML = "0";
+  });
+  cartTotal.innerHTML = "0";
+  if (window.location != "https://mit-canteen.netlify.app/user-orders.html") {
+    // Enable removed items btn
+    addItem.forEach((item) => {
+      addToCartBtn[item.FoodID - 1].disabled = false;
+      addToCartBtn[item.FoodID - 1].innerHTML = "Add to Cart";
+    });
+  }
+
+  // Empty Local Cart
+  addItem = [];
+
+  // Update in Firebase DB
+  firebase
+    .database()
+    .ref("Users_Carts/" + trimedEmailID + "_Cart")
+    .remove();
+}
+
+// User Order's Management -
+function userOrderManagement(trimedEmailID, userCart, userEmailID) {
+  const orderDate = new Date().toLocaleDateString();
+  var orderTime = new Date().toLocaleTimeString();
+  // To check AM or PM
+  var hours = new Date().getHours();
+  // Check AM or PM
+  if (hours >= 12) {
+    orderTime = orderTime + " PM";
+  } else {
+    orderTime = orderTime + " AM";
+  }
+
+  // Current Order
+  let current_order = {
+    Email_ID: userEmailID,
+    Order_Status: true,
+    User_Cart: userCart,
+    Payment_Status: false,
+    Delivery_Status: false,
+    Order_Date: orderDate,
+    Order_Time: orderTime,
+  };
+
+  // Add Current Order To User Orders list
+  firebase
+    .database()
+    .ref("Users_Order/" + trimedEmailID + "_Orders")
+    .push(current_order);
+}
+
+// Main.js When Content Loaded
+document.addEventListener("DOMContentLoaded", () => {
+  // Client UI
+  displayMenuItems(newMenu);
+  showUserCart(addItem);
+  const addToCartBtn = document.querySelectorAll("#add-to-cart-btn");
+  // Menu Filtering items
+  filtering(addToCartBtn);
+  ClientDataFlow(addToCartBtn);
+});
+
+// When User Loggin and Do Stuff
+function ClientDataFlow(addToCartBtn) {
+  // When User Is logged In
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      const userEmailID = user.email;
+      var trimedEmailID = makeUserDataID(userEmailID);
+      console.log(trimedEmailID);
+
+      // Get Cart Items already stored
+      firebase
+        .database()
+        .ref("Users_Carts/" + trimedEmailID + "_Cart")
+        .on("value", function (snapshot) {
+          if (snapshot.exists()) {
+            var userCart = snapshot.val().Details;
+            // Empty Array
+            addItem = [];
+            for (let i = 0; i < userCart.length; i++) {
+              // Store previouly added items to array -
+              addItem.push(userCart[i]);
+              // Disable already added items
+              if (
+                window.location !=
+                "https://mit-canteen.netlify.app/user-orders.html"
+              ) {
+                addToCartBtn[userCart[i].FoodID - 1].disabled = true;
+                addToCartBtn[userCart[i].FoodID - 1].innerHTML = "In Cart";
+              }
+            }
+            cartFunctionalities(addItem, trimedEmailID, addToCartBtn);
+            showUserCart(addItem, trimedEmailID);
+          }
+        });
+
+      // Cart Buttons -
+      if (addToCartBtn) {
+        addToCartBtn.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            var quantity = 1;
+            const data_id = btn.dataset.id;
+            // Set Values In Firebase DB
+            foodItemCartBtn(data_id, quantity, trimedEmailID, addItem);
+          });
+        });
+      }
+
+      // Remove all items from Cart -
+      clearCart.addEventListener("click", () => {
+        clearUserCart(addItem, addToCartBtn, trimedEmailID);
+        addItem = [];
+      });
+
+      // User Check Out's -
+      checkOutBtn.addEventListener("click", () => {
+        // Check If Cart is Empty or not -
+        if (addItem.length != 0) {
+          // Order
+          let userCart = showUserCart(addItem, trimedEmailID);
+          userOrderManagement(trimedEmailID, userCart, userEmailID);
+          // Empty User Cart
+          cartItemsContainer.innerHTML = "";
+          clearUserCart(addItem, addToCartBtn, trimedEmailID);
+          addItem = [];
+          Swal.fire({
+            icon: "success",
+            title: "Order Successfully Recorded",
+          });
+          window.setTimeout(function () {
+            window.location.replace(
+              "https://mit-canteen.netlify.app/user-orders.html"
+            );
+          }, 2600);
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Empty Cart: Add Some items in Cart",
+          });
+        }
+      });
+
+      // Shows Orders
+      if (
+        window.location.href ===
+        "https://mit-canteen.netlify.app/user-orders.html"
+      ) {
+        setOrderDetails(trimedEmailID);
+      }
+    } else {
+      console.log("no user logged in");
+    }
+  });
+}
+
+
+assets/js/functioning.js
+  // --- Authentication Part ---
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDBn5GMIvsqhTPMVAeylq-I_2R8SSJYzmI",
+    authDomain: "js-login-form.firebaseapp.com",
+    projectId: "js-login-form",
+    storageBucket: "js-login-form.appspot.com",
+    messagingSenderId: "1039987076182",
+    appId: "1:1039987076182:web:e51f940647b55c0cd7dff7",
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);  
+  
+  // SignUp Form ID's -
+  const myForm = document.getElementById("main-form");
+  const googleSignUp = document.querySelectorAll("#google-signUpIn");
+  const githubSignUp = document.querySelectorAll("#github-signUpIn");
+  const facebookSignUp = document.querySelectorAll("#facebook-signUpIn");
+  
+  // SignIn Form ID's -
+  const signInForm = document.getElementById('signIn-form');
+
+  // Sign Up Methods -
+  class signUpMethods {
+    // Basic LogIn System
+    builtInSignUp(){
+      const userName = myForm["sign-up-full-name"].value;
+      const email = myForm["sign-up-email"].value;
+      const password = myForm["sign-up-password"].value;
+      const repassword = myForm["sign-up-repassword"].value;
+      const phoneNumber = myForm["sign-up-number"].value;
+
+      // CheckStuff -
+      if (password != repassword || password === ''){
+        Swal.fire('Re Entered password is not same as entered password or field empty')
+      }
+      else if (phoneNumber.length != 10){
+        Swal.fire('Phone Number is not valid')
+      }
+      else {
+        // Firebase Auth
+        firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((cred) => {
+          // Save Data to firebase storage -
+          saveDatabase.UserfirebaseDatabase(userName, email, password, phoneNumber);
+          Swal.fire({
+            icon: 'success',
+            title: 'Account Created Successfully. Please LogIn To order Delicious Cuisine',
+          })
+        })
+        .catch((error) => Swal.fire("" + error));
+      }
+    }
+  
+    // Google SignUp Method -
+    googleSignUpIn(){
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          console.log(result.email);
+          this.notifyUser();
+          this.firebaseAuthRedirect();
+        })
+        .catch((error) => Swal.fire("" + error));
+    }
+  
+    // FaceBook SignUp Method -
+    facebookSignUpIn(){
+      var provider = new firebase.auth.FacebookAuthProvider();
+      provider.addScope("email, user_birthday");
+  
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          this.notifyUser();
+          this.firebaseAuthRedirect();
+        })
+        .catch((error) => Swal.fire("" + error));
+    }
+  
+    // GitHub SignUp Method -
+    githubSignUpIn(){
+      var provider = new firebase.auth.GithubAuthProvider();
+      provider.addScope("email, password");
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          this.notifyUser();
+          this.firebaseAuthRedirect();
+        })
+        .catch((error) => Swal.fire("" + error));
+    }
+
+    static authRedirecting() {
+      window.setTimeout(() => {
+        window.location.replace('client-side.html');
+      }, 500)
+    }
+
+    // Notify User
+    notifyUser() {
+      window.setTimeout(function(){
+        Swal.fire({
+          icon: 'success',
+          title: 'Account Signed In Successfully',
+        })
+      },1250)
+    }
+
+    firebaseAuthRedirect(){
+      firebase.auth().onAuthStateChanged(function(user) {
+        // If user is registered -
+        user ?  window.location.replace('https://mit-canteen.netlify.app/client-side') : console.log('none');
+      });
+    }
+  }
+
+  // Sign In Methods -
+  class signInMethods {
+    builtInSignIn(){
+    const email =  document.getElementById('sign-in-email').value;
+    const password = document.getElementById('sign-in-password').value;
+    console.log('called');
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Logged In',
+      })
+      signUpMethods.authRedirecting()
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: 'error',
+        title: '' + error,
+      })
+    });
+    }
+  }
+
+  // Save Data - To Firebase
+  class saveDatabase {
+    // Authentication Details -
+    static UserfirebaseDatabase(userName, email, password, phoneNumber) {
+      const userID = makeUserDataID(email);     
+      // Create User data in firebase -
+      console.log('database called');
+      firebase.database().ref('User_Data/' + userID).set({
+        User_Name: userName,
+        Email: email,
+        Password: password,
+        Phone_Number: phoneNumber,
+      });
+    }
+
+    // Cart Detailes
+  }
+
+  // When HTML & Other code is done -
+  document.addEventListener("DOMContentLoaded", () => {
+    // Sign Up Mehtods -
+    const signUp = new signUpMethods();
+
+    // Main Sign Up Form
+    if (myForm) {
+      myForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        signUp.builtInSignUp();
+      });
+    }
+
+    // Google Sign Up Form
+    if (googleSignUp) {
+      googleSignUp.forEach(element => {
+        element.addEventListener("click", (e) => {
+          e.preventDefault();
+          signUp.googleSignUpIn();
+        });
+      });
+    }
+
+    // GitHub Sign Up Form
+    if (githubSignUp) {
+      githubSignUp.forEach(element => {
+        element.addEventListener("click", (e) => {
+        e.preventDefault();
+        signUp.githubSignUpIn();
+      })
+    });
+    }
+
+    // Facebook Sign Up Form
+    if (facebookSignUp) {
+      facebookSignUp.forEach(element => {
+        element.addEventListener("click", (e) => {
+          e.preventDefault();
+          signUp.facebookSignUpIn();
+        });
+      });
+    }
+
+    // Sign In Methods -
+    const signIn = new signInMethods();
+    if (signInForm){
+      // Main Sign In Form
+      signInForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        signIn.builtInSignIn();
+      });
+    }
+
+    // LogOut User -
+    const logout = document.querySelectorAll('#userlogout');
+    if (logout){
+      logout.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          Swal.fire({
+            icon: 'success',
+            title: 'Logged Out Successfully',
+          })
+          firebase.auth().signOut().then(() => {
+            window.location.replace("index.html")
+          });
+        });
+      })
+    }
+
+  });
+
+// Makes User ID Through EmailID Provided By User
+let userDataID = '';
+function makeUserDataID(userEmailID){
+  // let userDataID = '';
+  for (i=0; userEmailID.length; i++){
+    if (userEmailID[i] != '@') { userDataID = userDataID + userEmailID[i] }
+    else { break }
+  }
+  return userDataID
+}
+
+assets/js/features.js
+//  --- Intro NavBar ---
+const previewNavbar = document.querySelector("#preview-navbar");
+if (previewNavbar) {
+  previewNavbar.innerHTML = `
+        <div class="container flex text-center jc-ai-center">
+            <!-- Left Navigation -->
+            <div class="site-title flex align-item-center">
+                <div>
+                    <a href="index.html"><h1><span class="clr-red">CNC</span> <span class="clr-green">Canteen</span></h1></a>
+                </div>
+                <!-- Toggle Bars -->
+                <div class="toggle-bars mybar">
+                    <div class="bars bar-1"></div>
+                    <div class="bars bar-2"></div>
+                    <div class="bars bar-3"></div>
+                </div>
+            </div>
+            <!-- Right Navigation -->
+            <nav class="site-nav flex left-nav align-item-center">                
+                <ul class="flex">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="our-vision.html"><i class="far fa-eye"></i> Our Vision</a></li>
+                    <button  class="btn" id="sign-modal">Log In</button>
+                    <button  class="btn" id="signup-modal">Sign Up</button>
+                </ul>
+            </nav>
+        </div>
+    `;
+}
+
+//  --- Intro Mobile NavBar ---
+const mobPreviewNavbar = document.querySelector("#mob-preview-navbar");
+if (mobPreviewNavbar) {
+  mobPreviewNavbar.innerHTML = `
+        <nav class="nav container">
+            <ul class="mob-ul">
+                <li><a href="index.html">Home</a></li> 
+                <li><a href="our-vision.html">Our Vision</a></li>
+                <button class="btn" id="sign-modal">Log In</button>
+                <button class="btn" id="signup-modal">Sign Up</button>
+            </ul>
+        </nav>
+    `;
+}
+
+// Toggle Bars Switch
+const toggleBars = document.querySelector(".toggle-bars");
+const mobUI = document.querySelector(".mob-ul");
+
+// Toggle Close/Open Function
+if (toggleBars) {
+  toggleBars.addEventListener("click", () => {
+    toggleBars.classList.toggle("change");
+    mobUI.classList.toggle("mob-nav-active");
+  });
+}
+
+// Best Dishes Section
+var bestDishes = [
+  {
+    title: "Masala Sandwich",
+    rating: 4,
+    imgURL: "assets/images/s2.jpg",
+    description:
+      "Sumptuous delicious food baked in our cafe with curated ingredients",
+    price: 30,
+  },
+  {
+    title: "Red Pasta",
+    rating: 5,
+    imgURL: "assets/images/pasta.jpg",
+    description:
+      "Sumptuous delicious food baked in our cafe with curated ingredients",
+    price: 45,
+  },
+  {
+    title: "White Pasta",
+    rating: 5,
+    imgURL: "assets/images/white-pasta.jpg",
+    description:
+      "Sumptuous delicious food baked in our cafe with curated ingredients",
+    price: 25,
+  },
+  {
+    title: "French Fries",
+    rating: 4,
+    imgURL: "assets/images/shezuan.jpg",
+    description:
+      "Sumptuous delicious food baked in our cafe with curated ingredients",
+    price: 35,
+  },
+];
+const bestDishesCont = document.querySelector("#best-dishes-container");
+function bestDishesHero() {
+  bestDishes.forEach((index) => {
+    var div = document.createElement("div");
+    div.innerHTML = `
+            <a href="#" class="card text-center m-2">
+                <h2>${index.title}</h2>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <img src="${index.imgURL}" loading="lazy" alt="Canteen Dishes">
+                <p>${index.description}</p>
+                <h3 class="md">&#8377; ${index.price}</h3>
+            </a>
+        `;
+    if (bestDishesCont) {
+      bestDishesCont.appendChild(div);
+    }
+  });
+}
+bestDishesHero();
+
+// --- Sign In Modal ---
+const signInModalbtn = document.querySelectorAll("#sign-modal");
+const signModal = document.querySelector(".sign-modal");
+
+// --- Sign Up Modal ---
+const signUpModalbtn = document.querySelectorAll("#signup-modal");
+const signUpModal = document.querySelector(".signup-modal");
+
+// --- Cart Modal ---
+const cartOverlay = document.querySelector(".cart-overlay");
+const cartInnerlay = document.querySelector(".cart-innerlay");
+const cartBtn = document.querySelectorAll("#cart-btn");
+
+// LogIn Modal
+signInModalbtn.forEach((element) => {
+  element.addEventListener("click", () => {
+    signModal.classList.toggle("show");
+    return signIn_UI;
+  });
+});
+// Registration Modal
+signUpModalbtn.forEach((element) => {
+  element.addEventListener("click", () => {
+    signUpModal.classList.toggle("show");
+    return signUp_UI;
+  });
+});
+
+// Cart Button
+cartBtn.forEach((element) => {
+  element.addEventListener("click", () => {
+    cartOverlay.classList.add("show");
+    cartInnerlay.classList.add("showCart");
+  });
+});
+
+// When the user clicks anywhere outside of the modal, closes it
+window.onclick = function (event) {
+  if (event.target == signModal || event.target == signUpModal) {
+    signModal.classList.remove("show");
+    signUpModal.classList.remove("show");
+  }
+  if (event.target == cartOverlay) {
+    cartOverlay.classList.remove("show");
+    cartInnerlay.classList.remove("showCart");
+  }
+};
+
+// Sign Up Modal
+var signUp_UI, signIn_UI;
+if (signUpModal) {
+  signUp_UI = signUpModal.innerHTML = `
+    <div class="modal-container">
+        <!-- Written Stuff -->
+        <div class="modal-content">
+            <div class="md">Welcome to <br><span class="clr-red md">CNC</span> <span class="clr-green md">Canteen</span></div>
+            <div><i onclick="signUpModal.classList.remove('show');" class="fas fa-times"></i></div>
+        </div>
+        <!-- Other way of LogIn's -->
+        <ul class="modal-icons flex">
+                <li><button><i class="fab fa-google" id="google-signUpIn"></i></button></li>
+                <li><button><i class="fab fa-github" id="github-signUpIn"></i></button></li>
+                <li><button><i class="fab fa-facebook" id="facebook-signUpIn"></i></button></li>
+        </ul>
+        <!-- Sign Up Input's -->
+        <form class="modal-form grid py-1 text-center" id="main-form" required>
+            <input type="text" placeholder="Full Name" id="sign-up-full-name" required>
+            <input type="email" placeholder="email id" id="sign-up-email" required>
+            <input type="password" placeholder="Password" id="sign-up-password" required>
+            <input type="password" placeholder="Re - Enter Password" id="sign-up-repassword" required>
+            <input type="tel" placeholder="Mobile Number" id="sign-up-number" required>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+        <!-- Remember Me CheckBox -->
+        <label class="text-center">
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <!-- Written Stuff -->
+        <div class="modal-content m-content-2 py-1">
+            Click “Register” to agree to Terms of Service and acknowledge 
+            that Privacy Policy applies to you. Have account? 
+            <a id="sign-modal" 
+            onclick="signUpModal.classList.remove('show');
+                    signModal.classList.add('show');" 
+            style="cursor: pointer;">
+                <span class="clr-green">Log In</span>
+            </a>
+        </div>
+    </div>
+`;
+}
+
+// Log In Modal
+if (signModal) {
+  signIn_UI = signModal.innerHTML = `
+    <!-- Main Card -->
+    <div class="modal-container">
+        <!-- Written Stuff -->
+        <div class="modal-content">
+            <div class="md">Welcome back!</div>
+            <div><i onclick="signModal.classList.remove('show');" class="fas fa-times"></i></div>
+        </div>
+        <!-- Other way of LogIn's -->
+        <ul class="modal-icons flex">
+            <li><button><i class="fab fa-google" id="google-signUpIn"></i></button></li>
+            <li><button><i class="fab fa-github" id="github-signUpIn"></i></button></li>
+            <li><button><i class="fab fa-facebook" id="facebook-signUpIn"></i></button></li>
+        </ul>
+        <!-- Sign In Input's -->
+        <form class="modal-form grid py-1 text-center" id="signIn-form">
+            <input type="email" placeholder="Email Id" id="sign-in-email" required>
+            <input type="password" placeholder="Password" id="sign-in-password" required>
+
+            <button type="submit" class="btn">Login</button>
+        </form>
+        <!-- Remember Me CheckBox -->
+        <label class="text-center">
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+        <!-- Written Stuff -->
+        <div class="modal-content m-content-2 py-1">
+            Click “Sign In” to agree to Terms of Service and acknowledge 
+            that Privacy Policy applies to you. No account? 
+            <a id="signup-modal" 
+                onclick="signModal.classList.remove('show');
+                         signUpModal.classList.add('show');" 
+                style="cursor: pointer;">
+                <span class="clr-green">Create one</span>
+            </a>
+        </div>
+    </div>
+`;
+}
+
+// Home/Vision Footer
+var customerFooter = document.querySelectorAll(".customer-footer");
+function customerFooterUI() {
+  if (customerFooter) {
+    customerFooter.forEach((element) => {
+      element.innerHTML = `
+            <section class="container-min">
+            <!-- Upper Footer -->
+                <main class="grid grid-3">
+                Maranalloor
+                </main>
+                <main class="deep-devs flex">
+                    <div>© Copyright 2020 - 2021. All Rights Reserved</div>
+                    <div class="">Designed & Developed By <a href="#">Gouri</a></div>
+                </main>
+            </section>
+        `;
+    });
+  }
+}
+customerFooterUI();
+
+// Authenticated User Footer
+var userFooter = document.querySelectorAll("#user-footer");
+function userFooterUI() {
+  if (userFooter) {
+    userFooter.forEach((element) => {
+      element.innerHTML = `
+            <section class="container-min">
+            <!-- Upper Footer -->
+                <main class="grid grid-3">
+                    <!-- About College -->
+                    <article class="about">
+                        <h1 class="sm">about</h1>
+                        <p></p>
+                        <ul class="py-1">
+                            <li><i class="fab fa-facebook-f"></i><a href="https://www.facebook.com//" target="_blank"> Facebook</a></li>
+                            <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com//" target="_blank">Instagram</a></li>
+                        </ul>
+                    </article>
+                    <!-- Navigation Links -->
+                    <article class="quick-links">
+                        <ul>
+                            <h1 class="sm">Quick Links</h1>
+                            <li><a href="client-side.html">Menu</a></li>
+                            <li><a href="user-orders.html">Your Orders</a></li>
+                            <li><a href="" target="_blank">Git Repository</a></li>
+                            <li><a href="https://cnc.com" target="_blank">CNC</a></li>
+                        </ul>
+                    </article>
+                    <!-- Contact Details -->
+                    <article class="contact">
+                        <ul>
+                            <h1 class="sm">Contact Information</h1>
+                            <li> <i class="fas fa-phone-alt"></i> <p>+91-731-2810001-08</p></li>
+                            <li> <i class="fas fa-envelope"></i> <p>admission@cnc.com</p></li>
+                            <li> <i class="fas fa-map-marker-alt"></i> <p>Maranallor, Trivandrum -95512</p></li>
+                            <li> <i class="fas fa-globe-asia"></i> <p>For Professional Courses, Visit: www.cnc.ac.in</p></li>
+                        </ul>
+                    </article>
+                </main>
+                <!-- Deep Devs Info -->
+                <main class="deep-devs flex">
+                    <div>© Copyright 2023 - 2024. All Rights Reserved</div>
+                    <div class="">Designed & Developed with <i class="fas fa-heart clr-red"></i> By <a href="#">Deep Devs</a></div>
+                </main>
+            </section>
+        `;
+    });
+  }
+}
+userFooterUI();
+
+// Client Orders Detals
+const showOrderDetails = document.querySelectorAll("#show-order-details");
+const descriptiveDetails = document.querySelector(".descriptive-details");
+const orderInner = document.querySelector(".order-inner");
+
+if (showOrderDetails) {
+  showOrderDetails.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      descriptiveDetails.classList.toggle("display-none");
+    });
+  });
+}
+
+function setOrderDetails(trimedEmailID) {
+  // Get Cart Items already stored
+  firebase
+    .database()
+    .ref("Users_Order/" + trimedEmailID + "_Orders")
+    .on("value", function (snapshot) {
+      if (snapshot.exists()) {
+        // Gets Data
+        var data = snapshot.val();
+        // Get Encrytion Keys
+        var userOrder = Object.keys(data);
+
+        // Puts keys & extracts values -
+        let i = 0;
+        userOrder.forEach((key) => {
+          // All Required Stuff
+          var total = data[key].User_Cart.Total_Amount;
+          var date = data[key].Order_Date;
+          var time = data[key].Order_Time;
+          var deliveryStatus = data[key].Delivery_Status;
+          var UserCart = data[key].User_Cart.Details;
+          var orderStatus = data[key].Order_Status;
+          var trimedID = "";
+          var orderID = "UO" + date;
+
+          // Creates Order ID
+          for (let j = 0; j < orderID.length; j++) {
+            if (orderID[j] != "/") {
+              trimedID += orderID[j];
+            }
+          }
+          if (data[key].Order_Status === true) {
+            i += 1;
+
+            // Check Order If accepted or not
+            if (orderStatus === true) {
+              orderStatus = "Cooking";
+            } else {
+              orderStatus = "Not Available";
+            }
+
+            if (deliveryStatus === true) {
+              orderStatus = "Ready";
+            }
+
+            // --- Creates Main Container ---
+            const div = document.createElement("main");
+            div.classList.add("current-details");
+
+            div.innerHTML = `
+                        <!-- Current Order Main Titles -->
+                        <table class="main-details">
+                            <div class="flex" style="justify-content: space-between;">
+                                <div><button class="table-btn my-1">Ordered Detail</button></div>
+                                <div class="md">${"#" + i}</div>
+                            </div>
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-th-list" style="margin-right: 5px;"></i> Order ID</th>
+                                    <th><i class="fas fa-tenge" style="margin-right: 5px;"></i> Total</th>
+                                    <th><i class="fas fa-calendar-alt" style="margin-right: 5px;"></i> Ordered Date</th>
+                                    <th><i class="fas fa-clock" style="margin-right: 5px;"></i> Ordered Time</th>
+                                    <th><i class="fas fa-calendar-check" style="margin-right: 5px;"></i> Order Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label= "Order ID">${trimedID}</td>
+                                    <td data-label= "Total">&#8377; ${total}</td>
+                                    <td data-label= "Date">${date}</td>
+                                    <td data-label= "Time">${time}</td>
+                                    <td data-label= "Order Status">${orderStatus}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button class="table-btn" id="show-order-details">More Details</button>
+                    `;
+            orderInner.appendChild(div);
+
+            // --- Creates table of Current Order ---
+            let sID = 0;
+            const currentDiv = document.createElement("table");
+            currentDiv.classList.add("descriptive-details");
+            currentDiv.innerHTML = `
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-coins" style="margin-right: 5px;"></i> ${"S. No"}</th>
+                                <th><i class="fas fa-th-list" style="margin-right: 5px;"></i> ${"Food"}</th>
+                                <th><i class="fas fa-money-bill-alt" style="margin-right: 5px;"></i> ${"Price"}</th>
+                                <th><i class="fab fa-buffer" style="margin-right: 5px;"></i> ${"Quantity"} </th>
+                                <th><i class="fas fa-tenge" style="margin-right: 5px;"></i> ${"Sub Total"}</th>
+                            </tr>
+                        </thead>
+                    `;
+            // Create table Data Body
+            var tbody = document.createElement("tbody");
+            // Puts data in Table
+            UserCart.forEach((itemID) => {
+              sID += 1;
+              let foodID = itemID.FoodID;
+              let subTotal = newMenu[foodID - 1].fields.price * itemID.Quantity;
+              // Creates Table Fields
+              var tr = document.createElement("tr");
+              tr.classList.add("my-1");
+              tr.innerHTML = `
+                            <td data-label= "S. No">${sID}</td>
+                            <td data-label= "Item">${
+                              newMenu[foodID - 1].fields.title
+                            }</td>
+                            <td data-label= "Price">&#8377 ${
+                              newMenu[foodID - 1].fields.price
+                            }</td>
+                            <td data-label= "Quantity">${itemID.Quantity}</td>
+                            <td data-label= "Sub Total">&#8377 ${subTotal}</td>
+                        `;
+              tbody.appendChild(tr);
+            });
+
+            // Line Seperating Two Orders -
+            var lineHR = document.createElement("hr");
+            lineHR.style.margin = "2rem auto 0rem auto";
+            lineHR.classList.add("hrStyle");
+            // Structures Container & other stuff
+            currentDiv.appendChild(tbody);
+            div.appendChild(currentDiv);
+            orderInner.appendChild(div);
+            orderInner.appendChild(lineHR);
+          }
+          // If order isn't accepted by administrator
+          else if (data[key].Order_Status === false) {
+            i += 1;
+
+            // --- Creates Main Container ---
+            const div = document.createElement("main");
+            div.classList.add("current-details");
+
+            div.innerHTML = `
+                        <!-- Current Order Main Titles -->
+                        <table class="main-details">
+                            <div class="flex" style="justify-content: space-between;">
+                                <div><button class="table-btn my-1">Ordered Detail</button></div>
+                                <div class="md">${"#" + i}</div>
+                            </div>
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-th-list" style="margin-right: 5px;"></i> Order ID</th>
+                                    <th><i class="fas fa-tenge" style="margin-right: 5px;"></i> Total</th>
+                                    <th><i class="fas fa-calendar-alt" style="margin-right: 5px;"></i> Ordered Date</th>
+                                    <th><i class="fas fa-clock" style="margin-right: 5px;"></i> Ordered Time</th>
+                                    <th><i class="fas fa-calendar-check" style="margin-right: 5px;"></i> Order Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-label= "Order ID">${trimedID}</td>
+                                    <td data-label= "Total">&#8377; ${total}</td>
+                                    <td data-label= "Date">${date}</td>
+                                    <td data-label= "Time">${time}</td>
+                                    <td data-label= "Order Status">${"Not Confirmed Yet"}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    `;
+            orderInner.appendChild(div);
+          }
+        });
+      } else {
+        console.log("no orders");
+      }
+    });
+}
+
+
+assets/js/admin.js
+
+// --- Admin Product Management Btns ---
+const addProductBtn = document.querySelector("#add-product-menu");
+const removeProductBtn = document.querySelector("#remove-product-menu");
+
+// Admin Management Containers
+const addContainer = document.querySelector(".add-container");
+const removeContainer = document.querySelector(".remove-container");
+
+// Admin Side URL
+const adminSRC = "http://127.0.0.1:5502/admin-side.html";
+
+// --- Admin Side ---
+if (adminSRC === window.location.href) {
+  console.log("admin side");
+  // Admin Management Btns
+  addProductBtn.addEventListener("click", () => {
+    addContainer.classList.toggle("show-container");
+    removeContainer.classList.remove("show-container");
+  });
+
+  // Admin Management Btns
+  removeProductBtn.addEventListener("click", () => {
+    removeContainer.classList.toggle("show-container");
+    addContainer.classList.remove("show-container");
+  });
+}
+
+mycode.js
+
+function createRadioOption(name, value, text) {
+  const radioContainer = document.createElement("div");
+  radioContainer.classList.add("radio-container");
+
+  const radio = document.createElement("input");
+  radio.type = "radio";
+  radio.name = name;
+  radio.value = value;
+
+  const label = document.createElement("label");
+  label.textContent = text;
+
+  radioContainer.appendChild(radio);
+  radioContainer.appendChild(label);
+
+  return radioContainer;
+}
+
+function displayAddItemPopup() {
+  // Create the popup box elements
+  const popupBox = document.createElement("div");
+  popupBox.classList.add("popup-box");
+
+  const title = document.createElement("h2");
+  title.textContent = "Add item";
+  title.classList.add("popup-title");
+
+  const form = document.createElement("form");
+  form.classList.add("popup-form");
+
+  const categoryLabel = document.createElement("label");
+  categoryLabel.textContent = "Category:";
+  categoryLabel.classList.add("popup-label");
+
+  const vegRadio = createRadioOption("category", "veg", "Veg");
+  const nonVegRadio = createRadioOption("category", "non-veg", "Non-Veg");
+
+  const itemNameLabel = document.createElement("label");
+  itemNameLabel.textContent = "Item Name:";
+  itemNameLabel.classList.add("popup-label");
+
+  const itemNameInput = document.createElement("input");
+  itemNameInput.setAttribute("type", "text");
+  itemNameInput.classList.add("popup-input");
+
+  const quantityLabel = document.createElement("label");
+  quantityLabel.textContent = "Quantity:";
+  quantityLabel.classList.add("popup-label");
+
+  const quantityInput = document.createElement("input");
+  quantityInput.setAttribute("type", "text");
+  quantityInput.classList.add("popup-input");
+
+  const priceLabel = document.createElement("label");
+  priceLabel.textContent = "Price:";
+  priceLabel.classList.add("popup-label");
+
+  const priceInput = document.createElement("input");
+  priceInput.setAttribute("type", "text");
+  priceInput.classList.add("popup-input");
+
+  const imageLabel = document.createElement("label");
+  imageLabel.textContent = "Image:";
+  imageLabel.classList.add("popup-label");
+
+  const imageInput = document.createElement("input");
+  imageInput.setAttribute("type", "file");
+  imageInput.classList.add("popup-input");
+
+  const submitButton = document.createElement("button");
+  submitButton.textContent = "Submit";
+  submitButton.classList.add("popup-button");
+
+  // Append elements to the form
+  form.appendChild(categoryLabel);
+  form.appendChild(vegRadio);
+  form.appendChild(nonVegRadio);
+  form.appendChild(itemNameLabel);
+  form.appendChild(itemNameInput);
+  form.appendChild(quantityLabel);
+  form.appendChild(quantityInput);
+  form.appendChild(priceLabel);
+  form.appendChild(priceInput);
+  form.appendChild(imageLabel);
+  form.appendChild(imageInput);
+  form.appendChild(submitButton);
+
+  // Append elements to the popup box
+  popupBox.appendChild(title);
+  popupBox.appendChild(form);
+
+  // Display the popup box
+  Swal.fire({
+    html: popupBox,
+    showCancelButton: true,
+    showConfirmButton: false,
+    cancelButtonText: "Close",
+    customClass: {
+      popup: "add-item-popup",
+    },
+  });
+}

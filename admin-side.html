@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="assets/css/utilities.css" />
     <link rel="stylesheet" href="assets/css/mobile.css" />
     <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/popup.css" />
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
 
 
     <!-- Sweet Alert Pop Modal -->
@@ -80,6 +85,7 @@
         <div class="title md text-center">Product Management</div>
         <hr />
         <article class="choose-operation text-center">
+
           <button class="btn p-1" id="add-product-menu">
             Add a Product to Menu
           </button>
@@ -153,6 +159,11 @@
     </section>
 
     <!-- Controls User Stuff -->
+    <script src="assets/js/mycode.js"></script>
+    <script>
+      const addButton = document.getElementById('add-product-menu');
+      addButton.addEventListener('click', displayAddItemPopup);
+    </script>
     <script src="assets/js/admin.js"></script>
     <!-- Page Animations -->
     <script src="assets/js/animations.js"></script>
